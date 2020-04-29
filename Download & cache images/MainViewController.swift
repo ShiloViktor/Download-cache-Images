@@ -9,6 +9,9 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    let pullToRefresh = UIRefreshControl()
+    
+    let webImageView = WebImageView()
     
     let imageUrls = ["https://s1.1zoom.me/b5050/995/Ocean_Island_Mountains_Sky_Mauritius_From_above_582975_800x600.jpg",
     "https://s1.1zoom.me/b5050/367/Mountains_Italy_Lake_Boats_Marinas_Lago_di_Braies_581849_800x600.jpg",
@@ -28,12 +31,24 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        collectionView.addSubview(pullToRefresh)
+        pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc func refresh() {
+//        webImageView.resetImages()
+        webImageView.removeCache()
+        collectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.pullToRefresh.endRefreshing()
+        }
     }
     
     func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -61,13 +76,26 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return imageUrls.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.imageViewCell.set(imageUrl: imageUrls, indexPath: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.5, animations: {
+            (collectionView.cellForItem(at: indexPath))?.frame = ((collectionView.cellForItem(at: indexPath))?.frame.offsetBy(dx: 500, dy: 0))!
+        })
+        { (finished) in
+            collectionView.cellForItem(at: indexPath)?.isHidden = true
+            collectionView.performBatchUpdates({
+                collectionView.deleteItems(at: [indexPath])
+                collectionView.reloadData()
+            }, completion: nil)
+        }
     }
     
 }
