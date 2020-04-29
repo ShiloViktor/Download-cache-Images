@@ -8,22 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		57839AAD24590DB300E9E93E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AAC24590DB300E9E93E /* AppDelegate.swift */; };
-		57839AAF24590DB400E9E93E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AAE24590DB400E9E93E /* SceneDelegate.swift */; };
-		57839AB124590DB400E9E93E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AB024590DB400E9E93E /* ViewController.swift */; };
-		57839AB424590DB400E9E93E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB224590DB400E9E93E /* Main.storyboard */; };
+		57839AB124590DB400E9E93E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AB024590DB400E9E93E /* MainViewController.swift */; };
 		57839AB624590DB900E9E93E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB524590DB900E9E93E /* Assets.xcassets */; };
 		57839AB924590DB900E9E93E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB724590DB900E9E93E /* LaunchScreen.storyboard */; };
+		57839AC12459178800E9E93E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AC02459178800E9E93E /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		57839AA924590DB300E9E93E /* Download & cache images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Download & cache images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57839AAC24590DB300E9E93E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57839AAE24590DB400E9E93E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		57839AB024590DB400E9E93E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		57839AB324590DB400E9E93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57839AB024590DB400E9E93E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57839AB524590DB900E9E93E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57839AB824590DB900E9E93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57839ABA24590DB900E9E93E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57839AC02459178800E9E93E /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +55,11 @@
 			isa = PBXGroup;
 			children = (
 				57839AAC24590DB300E9E93E /* AppDelegate.swift */,
-				57839AAE24590DB400E9E93E /* SceneDelegate.swift */,
-				57839AB024590DB400E9E93E /* ViewController.swift */,
-				57839AB224590DB400E9E93E /* Main.storyboard */,
+				57839AB024590DB400E9E93E /* MainViewController.swift */,
 				57839AB524590DB900E9E93E /* Assets.xcassets */,
 				57839AB724590DB900E9E93E /* LaunchScreen.storyboard */,
 				57839ABA24590DB900E9E93E /* Info.plist */,
+				57839AC02459178800E9E93E /* CollectionViewCell.swift */,
 			);
 			path = "Download & cache images";
 			sourceTree = "<group>";
@@ -127,7 +124,6 @@
 			files = (
 				57839AB924590DB900E9E93E /* LaunchScreen.storyboard in Resources */,
 				57839AB624590DB900E9E93E /* Assets.xcassets in Resources */,
-				57839AB424590DB400E9E93E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +134,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57839AB124590DB400E9E93E /* ViewController.swift in Sources */,
+				57839AB124590DB400E9E93E /* MainViewController.swift in Sources */,
 				57839AAD24590DB300E9E93E /* AppDelegate.swift in Sources */,
-				57839AAF24590DB400E9E93E /* SceneDelegate.swift in Sources */,
+				57839AC12459178800E9E93E /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		57839AB224590DB400E9E93E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57839AB324590DB400E9E93E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		57839AB724590DB900E9E93E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,6 +275,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAG3RCD42R;
 				INFOPLIST_FILE = "Download & cache images/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Victor-Shilo.Download---cache-images";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +294,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAG3RCD42R;
 				INFOPLIST_FILE = "Download & cache images/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Victor-Shilo.Download---cache-images";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
