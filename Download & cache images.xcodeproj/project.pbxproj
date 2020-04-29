@@ -12,6 +12,7 @@
 		57839AB624590DB900E9E93E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB524590DB900E9E93E /* Assets.xcassets */; };
 		57839AB924590DB900E9E93E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB724590DB900E9E93E /* LaunchScreen.storyboard */; };
 		57839AC12459178800E9E93E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AC02459178800E9E93E /* CollectionViewCell.swift */; };
+		57AC9E7224591FD1003215E6 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC9E7124591FD1003215E6 /* WebImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		57839AB824590DB900E9E93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57839ABA24590DB900E9E93E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57839AC02459178800E9E93E /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		57AC9E7124591FD1003215E6 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				57839AB724590DB900E9E93E /* LaunchScreen.storyboard */,
 				57839ABA24590DB900E9E93E /* Info.plist */,
 				57839AC02459178800E9E93E /* CollectionViewCell.swift */,
+				57AC9E7124591FD1003215E6 /* WebImageView.swift */,
 			);
 			path = "Download & cache images";
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				57839AB124590DB400E9E93E /* MainViewController.swift in Sources */,
 				57839AAD24590DB300E9E93E /* AppDelegate.swift in Sources */,
 				57839AC12459178800E9E93E /* CollectionViewCell.swift in Sources */,
+				57AC9E7224591FD1003215E6 /* WebImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

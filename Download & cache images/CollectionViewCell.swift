@@ -10,8 +10,8 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    lazy var imageViewCell: UIImageView = {
-       let imageView = UIImageView()
+    lazy var imageViewCell: WebImageView = {
+       let imageView = WebImageView()
         imageView.backgroundColor = .orange
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
