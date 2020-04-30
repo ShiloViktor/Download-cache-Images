@@ -22,6 +22,14 @@ class MainViewController: UIViewController {
     "https://s1.1zoom.me/b5050/321/Pond_Sky_Pagodas_Temples_Japan_Kansai_Byodo-in_Uji_581333_800x600.jpg",
     "https://s1.1zoom.me/b5255/337/Roads_Sky_England_Scenery_Mam_Tor_Peak_District_580899_800x600.jpg"]
     
+    var images: [Image] = [
+        Image(url: "https://s1.1zoom.me/b5050/995/Ocean_Island_Mountains_Sky_Mauritius_From_above_582975_800x600.jpg", image: nil),
+        Image(url:  "https://s1.1zoom.me/b5050/367/Mountains_Italy_Lake_Boats_Marinas_Lago_di_Braies_581849_800x600.jpg", image: nil),
+        Image(url: "https://s1.1zoom.me/b5050/431/Russia_Crimea_Coast_Sea_Crag_Trees_581991_800x600.jpg", image: nil),
+        Image(url: "https://s1.1zoom.me/b5050/680/Winter_Sky_Mountains_Snow_Night_Moon_Clouds_581802_800x600.jpg", image: nil),
+        Image(url: "https://s1.1zoom.me/b5050/321/Pond_Sky_Pagodas_Temples_Japan_Kansai_Byodo-in_Uji_581333_800x600.jpg", image: nil),
+    Image(url: "https://s1.1zoom.me/b5255/337/Roads_Sky_England_Scenery_Mam_Tor_Peak_District_580899_800x600.jpg", image: nil)]
+    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         collectionView.backgroundColor = .white
@@ -78,12 +86,17 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageUrls.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        cell.imageViewCell.set(imageUrl: imageUrls, indexPath: indexPath)
+        cell.imageViewCell.set(imageUrl: images[indexPath.row].url, indexPath: indexPath) { (image) in
+            guard let image = image else { return }
+            self.images[indexPath.row].image = image
+            cell.imageViewCell.image = self.images[indexPath.row].image
+            collectionView.reloadData()
+        }
         return cell
     }
     
@@ -94,7 +107,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         { (finished) in
             collectionView.cellForItem(at: indexPath)?.isHidden = true
             collectionView.performBatchUpdates({
-                
+                self.images.remove(at: indexPath.row)
                 collectionView.deleteItems(at: [indexPath])
                 collectionView.reloadData()
             }, completion: nil)

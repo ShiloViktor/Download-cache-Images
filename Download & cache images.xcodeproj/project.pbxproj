@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5716E084245A4B7D0006AFEB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5716E083245A4B7D0006AFEB /* ViewModel.swift */; };
+		5716E0CA245A67220006AFEB /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5716E0C9245A67220006AFEB /* Image.swift */; };
 		57839AAD24590DB300E9E93E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AAC24590DB300E9E93E /* AppDelegate.swift */; };
 		57839AB124590DB400E9E93E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57839AB024590DB400E9E93E /* MainViewController.swift */; };
 		57839AB624590DB900E9E93E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57839AB524590DB900E9E93E /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		5716E083245A4B7D0006AFEB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5716E0C9245A67220006AFEB /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		57839AA924590DB300E9E93E /* Download & cache images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Download & cache images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57839AAC24590DB300E9E93E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57839AB024590DB400E9E93E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				57839AC02459178800E9E93E /* CollectionViewCell.swift */,
 				57AC9E7124591FD1003215E6 /* WebImageView.swift */,
 				5716E083245A4B7D0006AFEB /* ViewModel.swift */,
+				5716E0C9245A67220006AFEB /* Image.swift */,
 			);
 			path = "Download & cache images";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5716E084245A4B7D0006AFEB /* ViewModel.swift in Sources */,
+				5716E0CA245A67220006AFEB /* Image.swift in Sources */,
 				57839AB124590DB400E9E93E /* MainViewController.swift in Sources */,
 				57839AAD24590DB300E9E93E /* AppDelegate.swift in Sources */,
 				57839AC12459178800E9E93E /* CollectionViewCell.swift in Sources */,

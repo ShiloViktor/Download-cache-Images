@@ -11,9 +11,8 @@ import UIKit
 
 class WebImageView: UIImageView {
     
-    
-    func set(imageUrl: [String?], indexPath: IndexPath) {
-        guard let imageUrl = imageUrl[indexPath.row], let url = URL(string: imageUrl) else {
+    func set(imageUrl: String, indexPath: IndexPath, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: imageUrl) else {
             self.image = nil
             return
         }
@@ -28,10 +27,11 @@ class WebImageView: UIImageView {
             guard let data = data, let response = response else {
                 return
             }
+            self?.handleLoadedImage(data: data, response: response)
+            let image = UIImage(data: data)
             DispatchQueue.main.async {
                 print("From internet")
-                self?.image = UIImage(data: data)
-                self?.handleLoadedImage(data: data, response: response)
+                completion(image)
             }
         }
         task.resume()
