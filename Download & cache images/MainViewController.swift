@@ -9,7 +9,9 @@
 import UIKit
 
 class MainViewController: UIViewController {
+        
     let pullToRefresh = UIRefreshControl()
+    
     
     let webImageView = WebImageView()
     
@@ -92,10 +94,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         { (finished) in
             collectionView.cellForItem(at: indexPath)?.isHidden = true
             collectionView.performBatchUpdates({
+                
                 collectionView.deleteItems(at: [indexPath])
                 collectionView.reloadData()
             }, completion: nil)
         }
     }
-    
 }

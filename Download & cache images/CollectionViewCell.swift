@@ -9,7 +9,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
+        
     lazy var imageViewCell: WebImageView = {
        let imageView = WebImageView()
         imageView.backgroundColor = .orange
@@ -27,6 +27,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+//        self.isHidden  = false
         imageViewCell.image = nil
     }
     

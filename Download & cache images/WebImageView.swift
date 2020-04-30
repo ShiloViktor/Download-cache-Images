@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class WebImageView: UIImageView {
+    
+    
     func set(imageUrl: [String?], indexPath: IndexPath) {
         guard let imageUrl = imageUrl[indexPath.row], let url = URL(string: imageUrl) else {
             self.image = nil
@@ -27,8 +29,8 @@ class WebImageView: UIImageView {
                 return
             }
             DispatchQueue.main.async {
-                self?.image = UIImage(data: data)
                 print("From internet")
+                self?.image = UIImage(data: data)
                 self?.handleLoadedImage(data: data, response: response)
             }
         }
