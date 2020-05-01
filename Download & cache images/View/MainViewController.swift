@@ -54,14 +54,10 @@ class MainViewController: UIViewController {
     
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
-        let cellWidthHeight: CGFloat = view.frame.width - 20
-        layout.sectionInset = UIEdgeInsets(top: 10,
-                                           left: 0,
-                                           bottom: 10,
-                                           right: 0)
+        layout.sectionInset = Constants.collectionViewSectionInsets
+        let cellWidthHeight: CGFloat = view.frame.width - Constants.cellSideFieldsInset
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = Constants.lineSpacing
         layout.itemSize = CGSize(width: cellWidthHeight, height: cellWidthHeight)
         return layout
     }
