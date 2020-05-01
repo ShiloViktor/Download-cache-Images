@@ -12,9 +12,9 @@ class CollectionViewCell: UICollectionViewCell {
         
     lazy var imageViewCell: WebImageView = {
        let imageView = WebImageView()
-        imageView.backgroundColor = .orange
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
     
@@ -28,7 +28,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
 //        self.isHidden  = false
-        imageViewCell.image = nil
+        self.imageViewCell.image = nil
     }
     
     override func layoutSubviews() {

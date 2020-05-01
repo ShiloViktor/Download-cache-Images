@@ -11,7 +11,5 @@ import UIKit
 
 struct ViewModel {
 
-    var image: UIImage
     
-    var images = [UIImage]()
 }

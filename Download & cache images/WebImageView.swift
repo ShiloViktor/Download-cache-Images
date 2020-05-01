@@ -46,8 +46,4 @@ class WebImageView: UIImageView {
     func removeCache() {
         URLCache.shared.removeAllCachedResponses()
     }
-    
-//    func resetImages() {
-//        self.image = nil
-//    }
 }

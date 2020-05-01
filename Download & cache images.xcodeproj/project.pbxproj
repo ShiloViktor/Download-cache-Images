@@ -60,12 +60,12 @@
 		57839AAB24590DB300E9E93E /* Download & cache images */ = {
 			isa = PBXGroup;
 			children = (
-				57839AAC24590DB300E9E93E /* AppDelegate.swift */,
 				57839AB024590DB400E9E93E /* MainViewController.swift */,
+				57839AC02459178800E9E93E /* CollectionViewCell.swift */,
+				57839AAC24590DB300E9E93E /* AppDelegate.swift */,
 				57839AB524590DB900E9E93E /* Assets.xcassets */,
 				57839AB724590DB900E9E93E /* LaunchScreen.storyboard */,
 				57839ABA24590DB900E9E93E /* Info.plist */,
-				57839AC02459178800E9E93E /* CollectionViewCell.swift */,
 				57AC9E7124591FD1003215E6 /* WebImageView.swift */,
 				5716E083245A4B7D0006AFEB /* ViewModel.swift */,
 				5716E0C9245A67220006AFEB /* Image.swift */,

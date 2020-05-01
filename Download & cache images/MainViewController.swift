@@ -23,12 +23,13 @@ class MainViewController: UIViewController {
         Image(url: "https://s1.1zoom.me/b5050/321/Pond_Sky_Pagodas_Temples_Japan_Kansai_Byodo-in_Uji_581333_800x600.jpg", image: nil),
     Image(url: "https://s1.1zoom.me/b5255/337/Roads_Sky_England_Scenery_Mam_Tor_Peak_District_580899_800x600.jpg", image: nil)]
     
-    var cellDataSource: [Image]?
+    var cellDataSource: [Image] = []
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.alwaysBounceVertical = true
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         return collectionView
     }()
@@ -43,11 +44,10 @@ class MainViewController: UIViewController {
     
     @objc func refresh() {
 //        webImageView.resetImages()
+        cellDataSource = images
         webImageView.removeCache()
         collectionView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.pullToRefresh.endRefreshing()
-        }
+        self.pullToRefresh.endRefreshing()
     }
     
     func setupCollectionView() {
@@ -82,25 +82,27 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellDataSource!.count
+        return cellDataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        cell.imageViewCell.set(imageUrl: images[indexPath.row].url, indexPath: indexPath) { (image) in
+        cell.imageViewCell.set(imageUrl: cellDataSource[indexPath.row].url, indexPath: indexPath) { (image) in
             guard let image = image else { return }
             self.images[indexPath.row].image = image
+            self.cellDataSource = self.images
             cell.imageViewCell.image = self.images[indexPath.row].image
-        }
+            }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3, animations: {
-            (collectionView.cellForItem(at: indexPath))?.frame = ((collectionView.cellForItem(at: indexPath))?.frame.offsetBy(dx: 500, dy: 0))!
+            (collectionView.cellForItem(at: indexPath))?.frame = ((collectionView.cellForItem(at: indexPath))?.frame.offsetBy(dx: 500, dy: 300))!
         })
         { (finished) in
-                self.cellDataSource?.remove(at: indexPath.row)
+                self.cellDataSource.remove(at: indexPath.row)
+            collectionView.cellForItem(at: indexPath)?.prepareForReuse()
                 collectionView.deleteItems(at: [indexPath])
         }
     }
