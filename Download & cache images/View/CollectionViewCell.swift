@@ -9,6 +9,8 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    private var viewModel: ViewModelType!
         
     lazy var imageViewCell: WebImageView = {
        let imageView = WebImageView()
@@ -20,6 +22,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        viewModel = ViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +30,6 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-//        self.isHidden  = false
         self.imageViewCell.image = nil
     }
     
@@ -42,5 +44,14 @@ class CollectionViewCell: UICollectionViewCell {
         imageViewCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         imageViewCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         imageViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+    }
+    
+    func set(cellviewModel: CellViewModelType, indexPath: IndexPath) {
+        imageViewCell.downloadImage(imageUrl: cellviewModel.ImageUrl) { (image) in
+            guard let image = image else { return }
+            self.viewModel.images[indexPath.row].image = image
+            self.viewModel.cellDataSource = self.viewModel.images
+            self.imageViewCell.image = self.viewModel.images[indexPath.row].image
+        }
     }
 }
