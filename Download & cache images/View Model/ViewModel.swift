@@ -25,8 +25,8 @@ class ViewModel: ViewModelType {
         return cellDataSource.count
      }
     
-    func cellViewModel(forIndexPAth indexPath: IndexPath) -> CellViewModelType {
-        let image = images[indexPath.row]
+    func cellViewModel(forIndexPAth indexPath: IndexPath) -> CellViewModelType? {
+        let image = cellDataSource[indexPath.row]
         return CellViewModel(image: image)
      }
 }

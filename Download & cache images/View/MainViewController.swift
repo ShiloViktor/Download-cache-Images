@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
         
     let pullToRefresh = UIRefreshControl()
     
-    private var viewModel: ViewModelType!
+    var viewModel: ViewModelType!
             
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ViewModel()
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         setupCollectionView()
         collectionView.addSubview(pullToRefresh)
         pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -48,7 +48,11 @@ class MainViewController: UIViewController {
         
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        } else {
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        }
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
@@ -70,11 +74,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell
-        
         guard let collectionViewCell = cell, let viewModel = viewModel else { return UICollectionViewCell() }
-        
-        let cellViewModel = viewModel.cellViewModel(forIndexPAth: indexPath) 
-                
+        let cellViewModel = viewModel.cellViewModel(forIndexPAth: indexPath)
         collectionViewCell.set(cellviewModel: cellViewModel, indexPath: indexPath)
         return collectionViewCell
     }

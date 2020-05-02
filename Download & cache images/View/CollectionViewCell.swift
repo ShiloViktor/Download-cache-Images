@@ -10,10 +10,11 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    private var viewModel: ViewModelType!
+    private var viewModel: ViewModelType! = ViewModel()
+    private var networkManager: NetworkManagerProtocol? = NetworkManager()
         
-    lazy var imageViewCell: WebImageView = {
-       let imageView = WebImageView()
+    lazy var imageViewCell: UIImageView = {
+       let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
@@ -22,7 +23,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        viewModel = ViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -46,8 +46,10 @@ class CollectionViewCell: UICollectionViewCell {
         imageViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
     
-    func set(cellviewModel: CellViewModelType, indexPath: IndexPath) {
-        imageViewCell.downloadImage(imageUrl: cellviewModel.ImageUrl) { (image) in
+    func set(cellviewModel: CellViewModelType?, indexPath: IndexPath) {
+        guard let networkManager = networkManager, let cellViewModel = cellviewModel else { return }
+        
+        networkManager.downloadImage(imageUrl: cellViewModel.ImageUrl) { (image) in
             guard let image = image else { return }
             self.viewModel.images[indexPath.row].image = image
             self.viewModel.cellDataSource = self.viewModel.images

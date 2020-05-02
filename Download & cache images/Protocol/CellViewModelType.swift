@@ -11,5 +11,4 @@ import UIKit
 
 protocol CellViewModelType: class {
     var ImageUrl: String { get }
-//    var cellImage: UIImage { get }
 }

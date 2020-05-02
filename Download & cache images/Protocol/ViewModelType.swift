@@ -10,7 +10,7 @@ import Foundation
 
 protocol ViewModelType {
     func numbersOfRows() -> Int 
-    func cellViewModel(forIndexPAth indexPath: IndexPath) -> CellViewModelType
+    func cellViewModel(forIndexPAth indexPath: IndexPath) -> CellViewModelType?
     var images: [Image] { get set }
     var cellDataSource: [Image] { get set }
 }

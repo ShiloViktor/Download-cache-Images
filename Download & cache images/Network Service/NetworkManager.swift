@@ -1,21 +1,21 @@
 //
-//  Network Service.swift
+//  NetworkManager.swift
 //  Download & cache images
 //
-//  Created by Виктор on 29.04.2020.
+//  Created by Виктор on 02.05.2020.
 //  Copyright © 2020 Виктор. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class WebImageView: UIImageView {
-    
-    func downloadImage(imageUrl: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: imageUrl) else {
-            self.image = nil
-            return
-        }
+protocol NetworkManagerProtocol {
+    func downloadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
+}
+
+class NetworkManager: NetworkManagerProtocol {
+    func downloadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
+        guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else { return }
         
         if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
             let image = UIImage(data: cachedResponse.data)
