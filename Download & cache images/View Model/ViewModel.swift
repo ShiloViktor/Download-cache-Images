@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewModel: ViewModelType {
+final class ViewModel: ViewModelType {
     
     var cellDataSource: [Image] = []
     

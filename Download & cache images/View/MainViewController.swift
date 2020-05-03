@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
         
     let pullToRefresh = UIRefreshControl()
     
@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.alwaysBounceVertical = true
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Constants.cellId)
         return collectionView
     }()
 
@@ -73,10 +73,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellId, for: indexPath) as? CollectionViewCell
         guard let collectionViewCell = cell, let viewModel = viewModel else { return UICollectionViewCell() }
         let cellViewModel = viewModel.cellViewModel(forIndexPAth: indexPath)
-        collectionViewCell.set(cellviewModel: cellViewModel, indexPath: indexPath)
+        collectionViewCell.set(cellviewModel: cellViewModel)
         return collectionViewCell
     }
     

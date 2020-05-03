@@ -13,18 +13,21 @@ protocol NetworkManagerProtocol {
     func downloadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void)
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager: NetworkManagerProtocol {
+    
+    static var shared = NetworkManager()
+    
     func downloadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
         guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else { return }
         
-        if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-            let image = UIImage(data: cachedResponse.data)
-            completion(image)
-            print("From Cachex")
+        if let image = CacheManager.checkCache(forUrl: url) {
+            DispatchQueue.main.async {
+                completion(image)
+            }
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, let response = response else {
                 return
             }

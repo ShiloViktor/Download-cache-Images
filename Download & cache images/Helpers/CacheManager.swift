@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-class CacheManager {
+final class CacheManager {
     
     static func handleLoadedImage(data: Data, response: URLResponse) {
         guard let responseUrl = response.url else { return }
@@ -18,5 +19,12 @@ class CacheManager {
     
     static func removeCache() {
         URLCache.shared.removeAllCachedResponses()
+    }
+    
+    static func checkCache(forUrl url: URL) -> UIImage? {
+        guard let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) else { return nil }
+        guard let image = UIImage(data: cachedResponse.data) else { return nil }
+        print("From Cachex")
+        return image
     }
 }

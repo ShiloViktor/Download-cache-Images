@@ -10,10 +10,8 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    private var viewModel: ViewModelType! = ViewModel()
-    private var networkManager: NetworkManagerProtocol? = NetworkManager()
         
-    lazy var imageViewCell: UIImageView = {
+    var imageViewCell: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -46,14 +44,12 @@ class CollectionViewCell: UICollectionViewCell {
         imageViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
     
-    func set(cellviewModel: CellViewModelType?, indexPath: IndexPath) {
-        guard let networkManager = networkManager, let cellViewModel = cellviewModel else { return }
+    func set(cellviewModel: CellViewModelType?) {
+        guard let cellViewModel = cellviewModel else { return }
         
-        networkManager.downloadImage(imageUrl: cellViewModel.ImageUrl) { (image) in
+        NetworkManager.shared.downloadImage(imageUrl: cellViewModel.ImageUrl) { (image) in
             guard let image = image else { return }
-            self.viewModel.images[indexPath.row].image = image
-            self.viewModel.cellDataSource = self.viewModel.images
-            self.imageViewCell.image = self.viewModel.images[indexPath.row].image
+            self.imageViewCell.image = image
         }
     }
 }
