@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Assembly {
+final class Assembly {
     static func assemble() -> UIViewController {
         let vc = MainViewController()
         vc.viewModel = ViewModel()

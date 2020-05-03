@@ -9,7 +9,7 @@
 import Foundation
 import  UIKit
 
-class CellViewModel: CellViewModelType {
+final class CellViewModel: CellViewModelType {
     
     var ImageUrl: String {
         return image.url

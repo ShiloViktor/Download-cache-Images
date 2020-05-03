@@ -27,16 +27,20 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         setupCollectionView()
-        collectionView.addSubview(pullToRefresh)
-        pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        setupRefreshControl()
         viewModel.cellDataSource = viewModel.images
     }
     
     @objc func refresh() {
         viewModel.cellDataSource = viewModel.images
-        CacheManager.removeCache()
+        CacheManager.shared.removeCache()
         collectionView.reloadData()
         self.pullToRefresh.endRefreshing()
+    }
+    
+    func setupRefreshControl() {
+        collectionView.addSubview(pullToRefresh)
+        pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func setupCollectionView() {

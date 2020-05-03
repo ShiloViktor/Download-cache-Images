@@ -20,7 +20,7 @@ final class NetworkManager: NetworkManagerProtocol {
     func downloadImage(imageUrl: String?, completion: @escaping (UIImage?) -> Void) {
         guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else { return }
         
-        if let image = CacheManager.checkCache(forUrl: url) {
+        if let image = CacheManager.shared.checkCache(forUrl: url) {
             DispatchQueue.main.async {
                 completion(image)
             }
@@ -31,7 +31,7 @@ final class NetworkManager: NetworkManagerProtocol {
             guard let data = data, let response = response else {
                 return
             }
-            CacheManager.handleLoadedImage(data: data, response: response)
+            CacheManager.shared.handleLoadedImage(data: data, response: response)
             let image = UIImage(data: data)
             DispatchQueue.main.async {
                 print("From internet")
